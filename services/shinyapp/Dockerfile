@@ -1,5 +1,4 @@
 FROM sktrinh12/meta-shinybase:latest
-# FROM sktrinh12/bdb-shinyapp:base_v1
 
 ARG UNAME
 ARG PASSWORD
@@ -14,7 +13,6 @@ RUN apt-get update && \
 RUN useradd -m -d $APP_HOME "${UNAME}" \
     && chown -R ${UNAME}:${UNAME} $APP_HOME \
     && echo "${UNAME}:${PASSWORD}" | chpasswd
-
 
 # set up git ssh
 USER $UNAME
