@@ -12,7 +12,6 @@ ENV TZ America/Los_Angeles
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-
 RUN apt-get -y update \
     && apt-get install -y --no-install-recommends \
     python3 \
@@ -21,7 +20,6 @@ RUN apt-get -y update \
     python3-pypdf2 \
     curl \
     vim \
-    openssh-server \
     sudo \
     netcat \
     && apt-get clean \
