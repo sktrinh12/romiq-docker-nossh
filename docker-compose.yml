@@ -1,12 +1,5 @@
 version: "3.7"
 services:
-    romiq:
-        container_name: romiq
-        image: bdbcontainerreg.azurecr.io/bdb-romiq-nopgdb:latest
-        volumes:
-            - ./common_drive/reports:/mnt/common_drive/reports
-        env_file:
-            - ./.env.dev
     pyapi:
         container_name: pyapi
         build:
@@ -16,13 +9,8 @@ services:
                 PASSWORD: pass
                 UNAME: bdb
                 HOSTNAME: romiq
-        command: gunicorn --bind 0.0.0.0:5000 manage:app
-        volumes:
-            - ./services/pyapi:/home/bdb/pyapi
         expose:
             - 5000
-        env_file:
-            - ./.env.dev
     shinyapp:
         container_name: shinyapp
         build:
@@ -32,19 +20,5 @@ services:
                 PASSWORD: pass
                 UNAME: bdb
         restart: unless-stopped
-        expose:
-            - 3838
-        volumes:
-            - ./common_drive:/mnt/common_drive
-    nginx:
-        container_name: nginx
-        build: ./services/nginx
-        links:
-            - pyapi1
-            - pyapi2
         ports:
-            - 1888:80
-            - 1889:81
-        restart: unless-stopped
-volumes:
-    pg-data:
+            - 3838:3838
