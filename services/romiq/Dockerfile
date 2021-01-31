@@ -1,4 +1,4 @@
-FROM bdbcontainerreg.azurecr.io/bdb-omiq:v2
+FROM sktrinh12/bdb-omiqpipeline:base_v1
 
 ARG UNAME
 ARG PASSWORD
