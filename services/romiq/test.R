@@ -15,7 +15,10 @@ print(paste(rep("+",25), collapse=''))
 print(paste0("the arguments: ", args))
 print(paste0('re-run: ', rerun_rd))
 
-for (i in seq(1:3)) {
+for (i in seq(1:8)) {
     Sys.sleep(1)
     print(paste0(i, '...'))
 }
+
+write.csv(mtcars, file= '/home/bdb/R/output.csv')
+print('wrote csv file')
