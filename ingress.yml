@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: minikube-ingress 
+    labels:
+        env: dev
+    annotations:
+spec:
+    rules:
+    - host: meta.app
+      http:
+          paths:
+          - path: /
+            backend:
+              serviceName: rshiny
+              servicePort: 3838
+          - path: /pyapi
+            backend:
+                serviceName: pyapi
+                servicePort: 5000
