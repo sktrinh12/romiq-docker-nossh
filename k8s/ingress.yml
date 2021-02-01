@@ -6,8 +6,12 @@ metadata:
         env: dev
     annotations:
 spec:
+    tls:
+        - secretName: dev-meta-app-tls
+          hosts:
+              - dev.meta-app.com
     rules:
-    - host: meta.app
+    - host: dev.meta-app.com
       http:
           paths:
           - path: /
