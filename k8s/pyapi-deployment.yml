@@ -32,11 +32,25 @@ spec:
             containers:
             - name: pyapi
               image: sktrinh12/romiq-ctnr:latest
+              volumeMounts:
+                  - name: shared-drive
+                    mountPath: /mnt/common_drive/reports
               env:
               - name: UNAME
-                value: bdb
+                valueFrom:
+                    secretKeyRef:
+                        name: container-credentials
+                        key: user
               - name: PASSWORD
-                value: pass
+                valueFrom:
+                    secretKeyRef:
+                        name: container-credentials
+                        key: password
               - name: VERSION
                 value: "1_2_1b"
+              imagePullPolicy: Always
             restartPolicy: Always
+            volumes:
+                - name: shared-drive
+                  hostPath:
+                      path: /mnt/common_drive/reports
