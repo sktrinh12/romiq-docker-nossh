@@ -8,7 +8,7 @@ import uvicorn
 app = FastAPI()
 
 
-@app.get("/run/{script_name}/{barcode}")
+@app.get("/pyapi/run/{script_name}/{barcode}")
 async def runOmiq(script_name: str, barcode: str, background_tasks: BackgroundTasks, re_run: Optional[str] = 'false'):
     # print(f'barcode: {barcode}')
     # print(f'script_name: {script_name}')
@@ -28,7 +28,7 @@ async def runOmiq(script_name: str, barcode: str, background_tasks: BackgroundTa
     return output
 
 
-@app.get("/")
+@app.get("/pyapi")
 def home():
     return {"ping" : f"from server: {socket.gethostname()}"}
 
