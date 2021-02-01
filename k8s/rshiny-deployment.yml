@@ -31,4 +31,23 @@ spec:
             containers:
                 - name: rshiny
                   image: sktrinh12/shinyapp-ctnr:latest
+                  env:
+                  - name: UNAME
+                    valueFrom:
+                        secretKeyRef:
+                            name: container-credentials 
+                            key: user
+                  - name: PASSWORD 
+                    valueFrom:
+                        secretKeyRef:
+                            name: container-credentials 
+                            key: password 
+                  volumeMounts:
+                      - mountPath: /mnt/common_drive/reports
+                        name: shared-drive
+                  imagePullPolicy: Always
             restartPolicy: Always
+            volumes:
+                - name: shared-drive
+                  hostPath:
+                      path: /mnt/common_drive/reports
